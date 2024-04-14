@@ -29,7 +29,7 @@ public class SelectDeselect : MonoBehaviour
             SelectObject(hit.transform);
             if (hit.collider.tag == "Objeto interactivo")
             {
-                if (Input.GetKeyDown(KeyCode.F))
+                if (Input.GetKeyDown(KeyCode.E))
                 {
                     hit.collider.transform.GetComponent<Carta>().Eliminar();
                 }
