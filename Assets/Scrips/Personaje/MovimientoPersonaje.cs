@@ -24,7 +24,7 @@ public class MovimientoPersonaje : MonoBehaviour
         estaEnElPiso = Physics.CheckSphere(enElPiso.position, distanciaDelPiso, mascaraPiso);
         if (estaEnElPiso && velocidadAbajo.y < 0)
         {
-            velocidadAbajo.y = -2;
+            velocidadAbajo.y = -0.5f;
         }
 
         float x = Input.GetAxis("Horizontal");
