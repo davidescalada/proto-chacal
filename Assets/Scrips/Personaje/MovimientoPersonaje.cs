@@ -50,7 +50,6 @@ public class MovimientoPersonaje : MonoBehaviour
     }
     public void SwitchMove()
     {
-        print("llamo a can move?");
         canMove =! canMove;
     }
 }
