@@ -1,28 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
-public class Llave : MonoBehaviour
+public class Llave : MonoBehaviour, IInteractable
 {
-    // Start is called before the first frame update
-    void Start()
+    public UnityEvent onInteract;
+    public ControlTextOFF controlTextOFF;
+    private bool interacted = false;
+    public void Interact()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.tag == "Player")
+        if (!interacted)
         {
-            Destroy(gameObject);
-            other.GetComponent<ObjetosClaves>().ObtuvoLlave();
-            
-        }
+            interacted = true;
+            onInteract.Invoke();
+            controlTextOFF.MostrarTextoLlave(4.0f);
+            gameObject.SetActive(false);
+        } 
+    }
+
+    public void Eliminar()
+    {
+        Destroy(this.gameObject);  
     }
 }
