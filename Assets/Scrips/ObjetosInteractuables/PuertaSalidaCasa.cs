@@ -1,19 +1,31 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
-public class PuertaSalidaCasa : MonoBehaviour
+public class PuertaSalidaCasa : MonoBehaviour, IInteractable
 {
     [SerializeField]Animation abrirPuerta;
-    private void OnTriggerEnter(Collider other)
+    [SerializeField] GameObject textNoLlave;
+    [SerializeField] ObjetosClaves objetosClaves;
+    [SerializeField] ControlTextOFF controlTextOff;
+    public void Interact()
     {
-        if (other.tag == "Player")
-        { 
-            if (other.GetComponent<ObjetosClaves>().GetLlave() == true)
-            {
-                abrirPuerta.Play("AbrirPuertaSalidaCasa");
-            }
-            else { Debug.Log("no tenes la llave"); }
+        CondicionSalir();
+    }
+
+    public void CondicionSalir()
+    {
+        if (objetosClaves.GetLlave() == true)
+        {
+            abrirPuerta.Play("AbrirPuertaSalidaCasa");
+        }
+        else
+        {
+            controlTextOff.MostrarTextoLlave(2f);
+            textNoLlave.SetActive(true);
+            
         }
     }
+
 }

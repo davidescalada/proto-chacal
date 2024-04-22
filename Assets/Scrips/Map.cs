@@ -9,6 +9,7 @@ public class Map : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        //Cursor.SetCursor()
     }
 
     // Update is called once per frame

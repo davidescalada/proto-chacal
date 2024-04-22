@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class ControlTextOFF : MonoBehaviour
 {
-    public GameObject textLlave;
+    public GameObject text;
 
     public void MostrarTextoLlave(float duracion)
     {
-        textLlave.SetActive(true);
+        text.SetActive(true);
         StartCoroutine(MostrarTextoLlaveCoroutine(duracion));
     }
 
@@ -18,7 +18,7 @@ public class ControlTextOFF : MonoBehaviour
         yield return new WaitForSeconds(duracion);
 
         // Desactivar el texto de la llave después de la duración especificada
-        textLlave.SetActive(false);
+        text.SetActive(false);
     }
 }
 

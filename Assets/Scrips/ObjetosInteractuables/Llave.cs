@@ -7,11 +7,13 @@ public class Llave : MonoBehaviour, IInteractable
 {
     public UnityEvent onInteract;
     public ControlTextOFF controlTextOFF;
+    public ObjetosClaves objPlayer;
     private bool interacted = false;
     public void Interact()
     {
         if (!interacted)
         {
+            objPlayer.ObtuvoLlave();
             interacted = true;
             onInteract.Invoke();
             controlTextOFF.MostrarTextoLlave(4.0f);
