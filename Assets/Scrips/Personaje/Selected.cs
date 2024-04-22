@@ -27,13 +27,25 @@ public class SelectDeselect : MonoBehaviour
         {
             Deselect();
             SelectObject(hit.transform);
-            if (hit.collider.tag == "Objeto interactivo")
+
+            //Intenta obtener el componente interactuable
+
+            IInteractable interactable = hit.collider.GetComponent<IInteractable>();
+
+            // Si el objeto golpeado es interactuable, y se presiona la tecla E
+            if (interactable != null && Input.GetKeyDown(KeyCode.E))
             {
-                if (Input.GetKeyDown(KeyCode.E))
-                {
-                    hit.collider.transform.GetComponent<Carta>().Eliminar();
-                }
+                // Llama al método Interact() del objeto
+                interactable.Interact();
             }
+
+            //if (hit.collider.tag == "Objeto interactivo")
+            //{
+            //    if (Input.GetKeyDown(KeyCode.E))
+            //    {
+            //        hit.collider.transform.GetComponent<Carta>().Eliminar();
+            //    }
+            //}
             Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * distancia, Color.red);
         }
         else
