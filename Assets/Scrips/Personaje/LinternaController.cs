@@ -5,7 +5,9 @@ using UnityEngine;
 public class LinternaController : MonoBehaviour
 {
     public Light linterna;
-
+    public float stunDuration = 3f;
+    public float lightRange;
+    
     void Start()
     {
         
@@ -15,6 +17,7 @@ public class LinternaController : MonoBehaviour
     void Update()
     {
         LinternaState();
+        ChequearEnemigo();
     }
 
     public void LinternaState()
@@ -32,4 +35,31 @@ public class LinternaController : MonoBehaviour
         }
     }
 
+    public void ChequearEnemigo()
+    {
+        if (linterna.enabled == true)
+        {
+            // Comprobar si el enemigo está dentro del rango de la luz
+            Collider[] hitColliders = Physics.OverlapSphere(transform.position, lightRange);
+            foreach (Collider collider in hitColliders)
+            {
+                if (collider.CompareTag("Enemy"))
+                {
+                    // Obtener componente EnemyController y aturdir al enemigo
+                    EnemyController enemyController = collider.GetComponent<EnemyController>();
+                    if (enemyController != null)
+                    {
+                        enemyController.StunEnemy();
+                    }
+                }
+        
+            }
+        }
+    }
+    void OnDrawGizmosSelected()
+    {
+        // Dibujar un gizmo para visualizar el rango de la luz
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, lightRange);
+    }
 }
