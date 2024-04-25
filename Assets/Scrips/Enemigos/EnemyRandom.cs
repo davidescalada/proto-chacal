@@ -150,6 +150,8 @@ public class EnemyController : MonoBehaviour
             Debug.Log("SE llamo a la funcion death del jugador");
         }
     }
+
+   
 }
 
 

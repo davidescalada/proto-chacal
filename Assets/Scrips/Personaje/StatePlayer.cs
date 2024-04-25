@@ -15,6 +15,7 @@ public class StatePlayer : MonoBehaviour
 
     public void Death()
     {
+        Debug.Log("Este es un msj TESTEANDO dentro del scrip del jugador");
         this.gameObject.GetComponent<Camera>().enabled = false;
         death.SetActive(true);
         aniDeath.enabled = true;
