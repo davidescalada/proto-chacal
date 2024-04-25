@@ -21,9 +21,10 @@ public class EnemyController : MonoBehaviour
     public float stunDuration = 3f;
     private bool isStunned = false;
     private float stunTimer = 0f;
-
+   
     void Start()
     {
+
         navMeshAgent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
 
@@ -148,6 +149,7 @@ public class EnemyController : MonoBehaviour
         {
             other.GetComponent<StatePlayer>().Death();
             Debug.Log("SE llamo a la funcion death del jugador");
+            gameObject.GetComponent<Collider>().enabled = false;
         }
     }
 
