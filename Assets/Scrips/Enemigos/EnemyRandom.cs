@@ -21,6 +21,7 @@ public class EnemyController : MonoBehaviour
     public float stunDuration = 3f;
     private bool isStunned = false;
     private float stunTimer = 0f;
+
     void Start()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
@@ -113,7 +114,6 @@ public class EnemyController : MonoBehaviour
         animator.SetBool("Walk", false);
         animator.SetBool("Idle", true);
         currentState = EnemyState.Idle;
-        Debug.Log("Entro al stuneeado");
         stunTimer -= Time.deltaTime;
         if (stunTimer <= 0f)
         {
@@ -140,6 +140,15 @@ public class EnemyController : MonoBehaviour
         // Este método puede ser llamado desde el script de la luz del jugador para aturdir al enemigo
         isStunned = true;
         stunTimer = stunDuration;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            other.GetComponent<StatePlayer>().Death();
+            Debug.Log("SE llamo a la funcion death del jugador");
+        }
     }
 }
 

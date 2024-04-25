@@ -7,10 +7,10 @@ public class LinternaController : MonoBehaviour
     public Light linterna;
     public float stunDuration = 3f;
     public float lightRange;
-    
+    public LayerMask maskEnemy; 
     void Start()
     {
-        
+        maskEnemy = LayerMask.GetMask("EnemyStuneable");
     }
 
 
@@ -41,16 +41,23 @@ public class LinternaController : MonoBehaviour
         {
             // Comprobar si el enemigo está dentro del rango de la luz
             Collider[] hitColliders = Physics.OverlapSphere(transform.position, lightRange);
+
+            RaycastHit hit;
             foreach (Collider collider in hitColliders)
             {
                 if (collider.CompareTag("Enemy"))
                 {
-                    // Obtener componente EnemyController y aturdir al enemigo
-                    EnemyController enemyController = collider.GetComponent<EnemyController>();
-                    if (enemyController != null)
+                    if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, lightRange, maskEnemy))
                     {
-                        enemyController.StunEnemy();
+                        // Obtener componente EnemyController y aturdir al enemigo
+                        EnemyController enemyController = collider.GetComponent<EnemyController>();
+                        
+                        if (enemyController != null)
+                        {
+                            enemyController.StunEnemy();
+                        }
                     }
+                       
                 }
         
             }
