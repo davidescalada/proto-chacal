@@ -16,7 +16,7 @@ public class Llave : MonoBehaviour, IInteractable
             objPlayer.ObtuvoLlave();
             interacted = true;
             onInteract.Invoke();
-            controlTextOFF.MostrarTextoLlave(4.0f);
+            controlTextOFF.MostrarTexto(4.0f);
             gameObject.SetActive(false);
         } 
     }

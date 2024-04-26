@@ -2,41 +2,42 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-public class MesaIglesia : MonoBehaviour
+public class MesaIglesia : MonoBehaviour, IInteractable
 {
     [SerializeField] GameObject uiText;
     public TMP_Text todos;
     public TMP_Text faltan;
-    void Start()
+    public GameObject objFinal;
+    [SerializeField] ObjetosClaves objetosClaves;
+    [SerializeField] ControlTextOFF ControlTextOFF;
+    private bool objEntregado = false;
+    public void Interact()
     {
-        
+        CheckObjetos();
     }
 
-
-    private void OnTriggerEnter(Collider other)
+    private void CheckObjetos()
     {
-        if (other.tag == "Player")
+        if (!objEntregado)
         {
-            
-            if (other.GetComponent<ObjetosClaves>().obj1 == true && other.GetComponent<ObjetosClaves>().obj2 == true && other.GetComponent<ObjetosClaves>().obj3 == true)
+            if (objetosClaves.obj1 == true && objetosClaves.obj2 == true && objetosClaves.obj3 == true)
             {
-                todos.text = "Tienes todos los objetos";
-                //Debug.Log("Tienes todos los objetos");
+                todos.text = "Has obtenido el objeto sagrado que te permitirá ir más allá";
+                CrearNuevoObjeto();
             }
             else
             {
                 faltan.text = "Aún te faltan objetos";
-                //Debug.Log("Aun te faltan objetos");
             }
             uiText.SetActive(true);
+            ControlTextOFF.MostrarTexto(3f);
         }
+            
     }
 
-    private void OnTriggerExit(Collider other)
+    private void CrearNuevoObjeto()
     {
-        if (other.tag == "Player")
-        {
-            uiText.SetActive(false);
-        }
+        Instantiate(objFinal, transform.position + new Vector3(0, 2f, 0), Quaternion.identity);
+        objEntregado = true;
     }
 }

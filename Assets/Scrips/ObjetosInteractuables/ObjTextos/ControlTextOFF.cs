@@ -6,13 +6,13 @@ public class ControlTextOFF : MonoBehaviour
 {
     public GameObject text;
 
-    public void MostrarTextoLlave(float duracion)
+    public void MostrarTexto(float duracion)
     {
         text.SetActive(true);
-        StartCoroutine(MostrarTextoLlaveCoroutine(duracion));
+        StartCoroutine(MostrarTextoCoroutine(duracion));
     }
 
-    private IEnumerator MostrarTextoLlaveCoroutine(float duracion)
+    private IEnumerator MostrarTextoCoroutine(float duracion)
     {
       
         yield return new WaitForSeconds(duracion);

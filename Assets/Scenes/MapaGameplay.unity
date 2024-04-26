@@ -2335,6 +2335,7 @@ MonoBehaviour:
   uiText: {fileID: 969569318}
   todos: {fileID: 1443855112}
   faltan: {fileID: 1443855112}
+  objFinal: {fileID: 7091197192356642832, guid: 7261247e0754edb4daad1af841d8aa98, type: 3}
 --- !u!65 &623501461
 BoxCollider:
   m_ObjectHideFlags: 0
