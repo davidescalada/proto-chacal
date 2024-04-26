@@ -148,8 +148,9 @@ public class EnemyController : MonoBehaviour
         if (other.tag == "Player")
         {
             other.GetComponent<StatePlayer>().Death();
-            Debug.Log("SE llamo a la funcion death del jugador");
+            
             gameObject.GetComponent<Collider>().enabled = false;
+            
         }
     }
 

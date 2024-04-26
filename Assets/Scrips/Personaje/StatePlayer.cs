@@ -9,14 +9,16 @@ public class StatePlayer : MonoBehaviour
     [SerializeField] Camera camPlayer;
     Animation aniDeath;
     bool isDeathAnimationPlaying = false;
+    public Vector3 checkpoint;
     void Start()
     {
+        
         aniDeath= objAnimacion.GetComponent<Animation>();
     }
  
     public void Death()
     {
-        Debug.Log("Este es un msj TESTEANDO dentro del scrip del jugador");
+        
         camPlayer.enabled = false;
         death.SetActive(true);
         objAnimacion.SetActive(true);
@@ -25,10 +27,12 @@ public class StatePlayer : MonoBehaviour
         {
             StartCoroutine(PlayDeathAnimationAfterDelay(3f));
         }
+        Reposicionamiento();
     }
 
     IEnumerator PlayDeathAnimationAfterDelay(float delay)
     {
+        
         isDeathAnimationPlaying = true;
         yield return new WaitForSeconds(delay);
         aniDeath.Play("death_fade");
@@ -36,11 +40,33 @@ public class StatePlayer : MonoBehaviour
         yield return new WaitForSeconds(aniDeath.clip.length);
         objAnimacion.SetActive(false); // Desactivar el objeto de la animación después de que termine la animación
         isDeathAnimationPlaying = false;
+        
         Resu();
+       
     }
     public void Resu()
     {
         camPlayer.enabled = true;
         death.SetActive(false);
+    }
+
+    public void Reposicionamiento()
+    {
+        Debug.Log("Entro en el reposicionamientot?");
+        transform.position = checkpoint;
+    }
+
+    public void ActualizarCheckpoint(Vector3 position)
+    {
+        checkpoint = position;
+        Debug.Log(checkpoint);
+    }
+
+    private void Update()
+    {
+        if (Input.GetKey(KeyCode.Space))
+       {
+            Reposicionamiento();
+        }
     }
 }
