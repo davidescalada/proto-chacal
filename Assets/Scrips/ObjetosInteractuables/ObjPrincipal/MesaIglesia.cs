@@ -4,7 +4,7 @@ using UnityEngine;
 using TMPro;
 public class MesaIglesia : MonoBehaviour, IInteractable
 {
-    [SerializeField] GameObject uiText;
+  
     public TMP_Text todos;
     public TMP_Text faltan;
     public GameObject objFinal;
@@ -29,7 +29,6 @@ public class MesaIglesia : MonoBehaviour, IInteractable
             {
                 faltan.text = "Aún te faltan objetos";
             }
-            uiText.SetActive(true);
             ControlTextOFF.MostrarTexto(3f);
         }
             
