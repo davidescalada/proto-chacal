@@ -12577,7 +12577,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5495c3a266eeb7c4a95b4be91bc21227, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uiText: {fileID: 969569318}
   todos: {fileID: 1443855112}
   faltan: {fileID: 1443855112}
   objFinal: {fileID: 7091197192356642832, guid: 7261247e0754edb4daad1af841d8aa98, type: 3}
@@ -13740,7 +13739,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterController: {fileID: 1697908211}
-  velocidad: 15
+  velocidad: 2
   gravedad: -0.1
   enElPiso: {fileID: 463276852}
   distanciaDelPiso: 0.4

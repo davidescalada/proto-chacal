@@ -5,17 +5,19 @@ using UnityEngine;
 public class MovimientoPersonaje : MonoBehaviour
 {
     public CharacterController characterController;
-    public float velocidad = 15f;
+    public float velocidad;
     public float gravedad = -10;
     public Transform enElPiso;
     public float distanciaDelPiso;
     public LayerMask mascaraPiso;
     public bool canMove;
-
+    private float stamina;
+    private bool pressRun;
     Vector3 velocidadAbajo;
     bool estaEnElPiso;
     void Start()
     {
+        stamina = 10;
         canMove = true;
     }
 
@@ -45,6 +47,30 @@ public class MovimientoPersonaje : MonoBehaviour
         characterController.Move(mover * velocidad * Time.deltaTime);
 
         velocidadAbajo.y += gravedad * Time.deltaTime;
+
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            pressRun = true;
+            if (stamina > 0)
+            {
+                stamina = stamina - 0.1f * Time.deltaTime;
+                velocidad = 4;
+            }
+        }
+        else if (Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            velocidad = 2;      
+            pressRun = false;
+        }
+
+        if (stamina < 10 && !pressRun)
+        {
+            stamina = stamina + 0.5f * Time.deltaTime;
+        }
+        Debug.Log(stamina);
+       
+
+
 
         characterController.Move(velocidadAbajo * velocidad * Time.deltaTime);
     }
