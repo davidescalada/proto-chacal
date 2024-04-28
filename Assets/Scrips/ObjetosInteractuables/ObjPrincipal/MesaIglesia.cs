@@ -11,6 +11,11 @@ public class MesaIglesia : MonoBehaviour, IInteractable
     [SerializeField] ObjetosClaves objetosClaves;
     [SerializeField] ControlTextOFF ControlTextOFF;
     private bool objEntregado = false;
+
+    private void Start()
+    {
+        objFinal.SetActive(false);
+    }
     public void Interact()
     {
         CheckObjetos();
@@ -23,7 +28,7 @@ public class MesaIglesia : MonoBehaviour, IInteractable
             if (objetosClaves.obj1 == true && objetosClaves.obj2 == true && objetosClaves.obj3 == true)
             {
                 todos.text = "Has obtenido el objeto sagrado que te permitirá ir más allá";
-                CrearNuevoObjeto();
+                Invoke("CrearNuevoObjeto", 2f);
             }
             else
             {
@@ -36,7 +41,8 @@ public class MesaIglesia : MonoBehaviour, IInteractable
 
     private void CrearNuevoObjeto()
     {
-        Instantiate(objFinal, transform.position + new Vector3(0, 2f, 0), Quaternion.identity);
+        objFinal.SetActive(true);
+        //Instantiate(objFinal, transform.position + new Vector3(0, 2f, 0), Quaternion.identity);
         objEntregado = true;
     }
 }

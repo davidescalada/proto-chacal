@@ -20,6 +20,7 @@ public class ObjRecolectables : MonoBehaviour, IInteractable
         if (gameObject.name == "ObjetoFin1") { objetosClaves.ObtuvoObj1(); text.text = "Has obtenido el objeto1";  }
         else if (gameObject.name == "ObjetoFin2") { objetosClaves.ObtuvoObj2(); text.text = "Has obtenido el objeto2"; }
         else if (gameObject.name == "ObjetoFin3") { objetosClaves.ObtuvoObj3(); text.text = "Has obtenido el objeto3"; }
+        else if (gameObject.name == "ObjFinal") { objetosClaves.ObtuvoObjFinal(); text.text = "Has obtenido el objeto final"; }
     }
     public void Eliminar()
     {

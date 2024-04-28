@@ -8,6 +8,7 @@ public class ObjetosClaves : MonoBehaviour
     public bool obj1;
     public bool obj2;
     public bool obj3;
+    public bool objFinal;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,5 +25,7 @@ public class ObjetosClaves : MonoBehaviour
     public void ObtuvoObj1() { obj1 = true; }
     public void ObtuvoObj2() { obj2 = true; }
     public void ObtuvoObj3() { obj3 = true; }
+    public void ObtuvoObjFinal() { objFinal = true; }
+
 }
 
