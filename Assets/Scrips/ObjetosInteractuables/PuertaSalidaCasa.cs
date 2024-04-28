@@ -22,7 +22,7 @@ public class PuertaSalidaCasa : MonoBehaviour, IInteractable
         }
         else
         {
-            controlTextOff.MostrarTextoLlave(2f);
+            controlTextOff.MostrarTexto(2f);
             textNoLlave.SetActive(true);
             
         }
