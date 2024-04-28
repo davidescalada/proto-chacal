@@ -69,4 +69,9 @@ public class StatePlayer : MonoBehaviour
             Reposicionamiento();
         }
     }
+
+    public void Faint()
+    {
+
+    }
 }

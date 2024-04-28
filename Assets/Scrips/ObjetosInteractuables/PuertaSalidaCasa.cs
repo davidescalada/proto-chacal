@@ -11,7 +11,10 @@ public class PuertaSalidaCasa : MonoBehaviour, IInteractable
     [SerializeField] ControlTextOFF controlTextOff;
     public void Interact()
     {
-        CondicionSalir();
+        if (!objetosClaves.GetLlave())
+        {
+            CondicionSalir();
+        }
     }
 
     public void CondicionSalir()

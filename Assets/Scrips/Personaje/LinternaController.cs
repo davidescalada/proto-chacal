@@ -7,10 +7,12 @@ public class LinternaController : MonoBehaviour
     public Light linterna;
     public float stunDuration = 3f;
     public float lightRange;
-    public LayerMask maskEnemy; 
+    public LayerMask maskEnemy;
+    public LayerMask maskEnemyVisual;
     void Start()
     {
         maskEnemy = LayerMask.GetMask("EnemyStuneable");
+        maskEnemyVisual = LayerMask.GetMask("EnemyVisual");
     }
 
 
@@ -51,15 +53,25 @@ public class LinternaController : MonoBehaviour
                     {
                         // Obtener componente EnemyController y aturdir al enemigo
                         EnemyController enemyController = collider.GetComponent<EnemyController>();
-                        
+
                         if (enemyController != null)
                         {
                             enemyController.StunEnemy();
                         }
                     }
-                       
+
                 }
-        
+                else if (collider.CompareTag("EnemyVisual"))
+                {
+                    if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, lightRange, maskEnemyVisual))
+                    {
+                        EnemyContactVisual enemyVisual = collider.GetComponent<EnemyContactVisual>();
+                        if (enemyVisual != null)
+                        {
+                            enemyVisual.GenerarMareo();
+                        }
+                    }
+                }
             }
         }
     }
